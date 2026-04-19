@@ -1,13 +1,21 @@
 import { authApi } from "@/lib/api/auth";
+import { tokenService } from "@/lib/auth-token";
 import { RegisterUserFormData } from "@/lib/validators/auth";
+import { IUser } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const initialState = {
+interface AuthState {
+  user: IUser | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+}
+
+const initialState: AuthState = {
   user: null,
   isAuthenticated: false,
+  isLoading: true,
 };
-
 export const registerUserThunk = createAsyncThunk<
   any,
   RegisterUserFormData,
@@ -16,7 +24,8 @@ export const registerUserThunk = createAsyncThunk<
   try {
     const res = await authApi.register(data);
 
-    // tokenService.setToken(res.accessToken);
+    // store token
+    tokenService.setToken(res.accessToken);
 
     return res.user;
   } catch (error: any) {
