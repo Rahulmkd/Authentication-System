@@ -1,12 +1,14 @@
 let accessToken: string | null = null;
 
+const TOKEN_KEY = "accessToken";
+
 export const tokenService = {
-  getToken: () => {
-    if (accessToken) {
-      return accessToken;
-    }
-    if (typeof window !== "undefined") {
-      accessToken = localStorage.getItem("accessToken");
+  getToken: (): string | null => {
+    if (typeof window === "undefined") return null;
+
+    // Always sync from localStorage if memory is empty
+    if (!accessToken) {
+      accessToken = localStorage.getItem(TOKEN_KEY);
     }
 
     return accessToken;
@@ -14,15 +16,17 @@ export const tokenService = {
 
   setToken: (token: string) => {
     accessToken = token;
+
     if (typeof window !== "undefined") {
-      localStorage.setItem("accessToken", token);
+      localStorage.setItem(TOKEN_KEY, token);
     }
   },
 
   clearToken: () => {
     accessToken = null;
+
     if (typeof window !== "undefined") {
-      localStorage.removeItem("accessToken");
+      localStorage.removeItem(TOKEN_KEY);
     }
   },
 };

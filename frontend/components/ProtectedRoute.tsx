@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuthInit } from "@/hooks/userAuthInit";
-import { useAppSelector } from "@/lib/redux/hooks";
+import { useAppSelector } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 

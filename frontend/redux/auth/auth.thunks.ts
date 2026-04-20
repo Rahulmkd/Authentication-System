@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { authApi } from "@/lib/api/authApi";
 import { tokenService } from "@/lib/auth-token";
-import { IUser, AuthResponse } from "./auth.types";
+import { IUser } from "./auth.types";
 import { LoginUserFormData, RegisterUserFormData } from "@/lib/validators/auth";
 
 // 🔹 helper
@@ -36,8 +36,7 @@ export const loginUserThunk = createAsyncThunk<
   { rejectValue: string }
 >("auth/login", async (data, { rejectWithValue }) => {
   try {
-    const res: AuthResponse = await authApi.login(data);
-
+    const res = await authApi.login(data);
     tokenService.setToken(res.accessToken);
 
     return res.user;
@@ -53,7 +52,7 @@ export const registerUserThunk = createAsyncThunk<
   { rejectValue: string }
 >("auth/register", async (data, { rejectWithValue }) => {
   try {
-    const res: AuthResponse = await authApi.register(data);
+    const res = await authApi.register(data);
 
     tokenService.setToken(res.accessToken);
 

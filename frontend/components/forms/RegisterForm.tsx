@@ -1,7 +1,7 @@
 "use client";
 
-import { useAppDispatch } from "@/lib/redux/hooks";
-import { registerUserThunk } from "@/lib/redux/auth/auth.thunks";
+import { useAppDispatch } from "@/redux/hooks";
+import { registerUserThunk } from "@/redux/auth/auth.thunks";
 import { registerSchema, RegisterUserFormData } from "@/lib/validators/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
@@ -33,7 +33,7 @@ const RegisterForm = () => {
       await dispatch(registerUserThunk(data)).unwrap();
 
       toast.success("Account created successfully!");
-      router.push("/profile");
+      router.push("/dashboard");
     } catch (error: unknown) {
       const message =
         typeof error === "string"

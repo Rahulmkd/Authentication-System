@@ -6,20 +6,23 @@ import { tokenService } from "@/lib/auth-token";
 const initialState: AuthState = {
   user: null,
   isAuthenticated: false,
-  isLoading: false,
+  isLoading: true,
   error: null,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
-
   reducers: {
     logout: (state) => {
       tokenService.clearToken();
       state.user = null;
       state.isAuthenticated = false;
       state.error = null;
+    },
+    // resolves loading when no token
+    setAuthResolved: (state) => {
+      state.isLoading = false;
     },
 
     clearError: (state) => {
@@ -39,8 +42,8 @@ const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(fetchUser.rejected, (state) => {
-        state.isLoading = false;
         state.user = null;
+        state.isLoading = false;
         state.isAuthenticated = false;
       })
 
@@ -76,5 +79,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout, clearError } = authSlice.actions;
+export const { logout, clearError, setAuthResolved } = authSlice.actions;
 export default authSlice.reducer;

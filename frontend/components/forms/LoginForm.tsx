@@ -1,7 +1,7 @@
 "use client";
 
-import { useAppDispatch } from "@/lib/redux/hooks";
-import { loginUserThunk } from "@/lib/redux/auth/auth.thunks";
+import { useAppDispatch } from "@/redux/hooks";
+import { loginUserThunk } from "@/redux/auth/auth.thunks";
 import { loginSchema, LoginUserFormData } from "@/lib/validators/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertCircle, Eye, EyeOff, Loader2 } from "lucide-react";
@@ -32,7 +32,7 @@ const LoginForm = () => {
     try {
       await dispatch(loginUserThunk(data)).unwrap();
       toast.success("Welcome back!");
-      router.push("/profile");
+      router.push("/dashboard");
     } catch (error: unknown) {
       const message =
         typeof error === "string"
@@ -41,7 +41,7 @@ const LoginForm = () => {
             ? error.message
             : "Invalid email or password";
 
-         setError("root", { type: "manual", message });
+      setError("root", { type: "manual", message });
     }
   };
 
