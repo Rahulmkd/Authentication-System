@@ -5,7 +5,6 @@ import { useAppSelector } from "@/redux/hooks";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   LayoutDashboard,
-  Users,
   Activity,
   CreditCard,
   ArrowUpRight,

@@ -4,6 +4,7 @@ import { useAuthInit } from "@/hooks/userAuthInit";
 import { useAppSelector } from "@/redux/hooks";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { DashboardSkeleton } from "./common/DashboardSkeleton";
 
 export default function ProtectedRoute({
   children,
@@ -21,7 +22,7 @@ export default function ProtectedRoute({
     }
   }, [isLoading, isAuthenticated, router]);
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <DashboardSkeleton />;
 
   if (!isAuthenticated) return null;
 
