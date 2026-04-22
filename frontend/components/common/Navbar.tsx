@@ -29,7 +29,6 @@ import {
   LayoutDashboard,
   Settings,
   Menu,
-  X,
   Search,
   ChevronRight,
 } from "lucide-react";
@@ -40,7 +39,7 @@ const NAV_LINKS = [
   { name: "Home", href: "/" },
   { name: "Explore", href: "/explore" },
   { name: "Community", href: "/community" },
-  { name: "Pricing", href: "/pricing" },
+  { name: "Blog", href: "/blog" },
 ];
 
 export default function Navbar() {
@@ -68,7 +67,7 @@ export default function Navbar() {
               <div className="w-6 h-6 bg-black rounded-md flex items-center justify-center">
                 <div className="w-2 h-2 bg-white rotate-45" />
               </div>
-              BRAND<span className="text-gray-400">.</span>
+              Ai.x<span className="text-gray-400">.</span>
             </Link>
 
             {/* Desktop Navigation */}

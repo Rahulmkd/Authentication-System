@@ -35,9 +35,12 @@ export default function Footer() {
           <div className="col-span-2 lg:col-span-2 space-y-4">
             <Link
               href="/"
-              className="text-xl font-bold tracking-tighter text-black"
+              className="text-xl font-black tracking-tighter text-black flex items-center gap-1"
             >
-              BRAND<span className="text-gray-400">.</span>
+              <div className="w-6 h-6 bg-black rounded-md flex items-center justify-center">
+                <div className="w-2 h-2 bg-white rotate-45" />
+              </div>
+              <span className="text-gray-400">.</span>
             </Link>
             <p className="text-sm text-gray-500 max-w-xs leading-relaxed">
               Building high-performance interfaces with modern technology. The

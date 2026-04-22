@@ -153,7 +153,7 @@ export default function SettingsPage() {
                       </div>
                       <Button
                         variant="destructive"
-                        className="bg-red-600 rounded-lg flex items-center gap-2"
+                        className="bg-red-600 text-white hover:text-red-600 rounded-lg flex items-center gap-2"
                       >
                         <Trash2 className="w-4 h-4" />
                         Delete Account
